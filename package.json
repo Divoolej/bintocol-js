@@ -1,6 +1,6 @@
 {
   "name": "bintocol-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Minimalistic event-oriented binary protocol designed for WebSocket communication",
   "source": "src/index.js",
   "main": "dist/bintocol.js",
