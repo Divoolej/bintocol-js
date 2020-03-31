@@ -1,0 +1,32 @@
+{
+  "name": "bintocol-js",
+  "version": "1.0.0",
+  "description": "Minimalistic event-oriented binary protocol designed for WebSocket communication",
+  "source": "src/index.js",
+  "main": "dist/bintocol.js",
+  "module": "dist/bintocol.module.js",
+  "unpkg": "dist/bintocol.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "install": "microbundle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Divoolej/bintocol-js.git"
+  },
+  "keywords": [
+    "binary",
+    "websocket",
+    "protocol"
+  ],
+  "author": "Wojciech Olejnik (Divoolej)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Divoolej/bintocol-js/issues"
+  },
+  "homepage": "https://github.com/Divoolej/bintocol-js#readme",
+  "devDependencies": {
+    "microbundle": "^0.11.0"
+  }
+}
