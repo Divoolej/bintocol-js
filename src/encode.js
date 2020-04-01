@@ -8,7 +8,7 @@ const { getSchema, types } = registry;
 const { MASK_1, MASK_6 } = MASKS;
 const { OBJECT, BOOL, INT, UINT, STRING, ARRAY } = types;
 
-export default encode = (payload, options) => {
+export default encode = (payload, options = { compress: 'auto', json: true }) => {
   const { event, data } = payload;
   let encodedData, encodedHeader;
   if (options.compress === 'auto') {
