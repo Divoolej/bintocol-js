@@ -10,7 +10,7 @@ const { OBJECT, BOOL, INT, UINT, STRING, ARRAY } = types;
 
 export default decode = (message) => {
   const { event, options } = decodeHeader(message[0]);
-  return decodeData({ event, data: message.slice(1) }, options);
+  return { event, data: decodeData({ event, data: message.slice(1) }, options) };
 };
 
 const decodeHeader = headerByte => ({
