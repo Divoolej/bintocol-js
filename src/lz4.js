@@ -1,8 +1,8 @@
-require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({"./utils":[function(require,module,exports){
+_require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({"./utils":[function(_require,module,exports){
 /**
  * Javascript emulated bindings
  */
-var XXH = require('xxhashjs').h32 // XXX .h64
+var XXH = _require('xxhashjs').h32 // XXX .h64
 
 var CHECKSUM_SEED = 0
 
@@ -35,13 +35,13 @@ exports.readUInt32LE = function (buffer, offset) {
   return val >>> 0;
 }
 
-exports.bindings = require('./binding')
+exports.bindings = _require('./binding')
 
-},{"./binding":1,"xxhashjs":"xxhashjs"}],1:[function(require,module,exports){
+},{"./binding":1,"xxhashjs":"xxhashjs"}],1:[function(_require,module,exports){
 /**
   Javascript version of the key LZ4 C functions
  */
-var uint32 = require('cuint').UINT32
+var uint32 = _require('cuint').UINT32
 
 if (!Math.imul) Math.imul = function imul(a, b) {
   var ah = a >>> 16;
@@ -286,9 +286,9 @@ function compressBlock (src, dst, pos, hashTable, sIdx, eIdx) {
   return dpos
 }
 
-},{"cuint":10}],2:[function(require,module,exports){
+},{"cuint":10}],2:[function(_require,module,exports){
 (function (Buffer){
-var Decoder = require('./decoder_stream')
+var Decoder = _require('./decoder_stream')
 
 /**
   Decode an LZ4 stream
@@ -307,16 +307,16 @@ function LZ4_uncompress (input, options) {
 }
 
 exports.LZ4_uncompress = LZ4_uncompress
-}).call(this,require("buffer").Buffer)
-},{"./decoder_stream":3,"buffer":"buffer"}],3:[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"./decoder_stream":3,"buffer":"buffer"}],3:[function(_require,module,exports){
 (function (Buffer){
-var Transform = require('stream').Transform
-var inherits = require('util').inherits
+var Transform = _require('stream').Transform
+var inherits = _require('util').inherits
 
-var lz4_static = require('./static')
+var lz4_static = _require('./static')
 var utils = lz4_static.utils
 var lz4_binding = utils.bindings
-var lz4_jsbinding = require('./binding')
+var lz4_jsbinding = _require('./binding')
 
 var STATES = lz4_static.STATES
 var SIZES = lz4_static.SIZES
@@ -641,10 +641,10 @@ Decoder.prototype._main = function (done) {
 
 module.exports = Decoder
 
-}).call(this,require("buffer").Buffer)
-},{"./binding":1,"./static":6,"buffer":"buffer","stream":35,"util":39}],4:[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"./binding":1,"./static":6,"buffer":"buffer","stream":35,"util":39}],4:[function(_require,module,exports){
 (function (Buffer){
-var Encoder = require('./encoder_stream')
+var Encoder = _require('./encoder_stream')
 
 /**
   Encode an LZ4 stream
@@ -664,16 +664,16 @@ function LZ4_compress (input, options) {
 
 exports.LZ4_compress = LZ4_compress
 
-}).call(this,require("buffer").Buffer)
-},{"./encoder_stream":5,"buffer":"buffer"}],5:[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"./encoder_stream":5,"buffer":"buffer"}],5:[function(_require,module,exports){
 (function (Buffer){
-var Transform = require('stream').Transform
-var inherits = require('util').inherits
+var Transform = _require('stream').Transform
+var inherits = _require('util').inherits
 
-var lz4_static = require('./static')
+var lz4_static = _require('./static')
 var utils = lz4_static.utils
 var lz4_binding = utils.bindings
-var lz4_jsbinding = require('./binding')
+var lz4_jsbinding = _require('./binding')
 
 var STATES = lz4_static.STATES
 var SIZES = lz4_static.SIZES
@@ -895,8 +895,8 @@ Encoder.prototype._flush = function (done) {
 
 module.exports = Encoder
 
-}).call(this,require("buffer").Buffer)
-},{"./binding":1,"./static":6,"buffer":"buffer","stream":35,"util":39}],6:[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"./binding":1,"./static":6,"buffer":"buffer","stream":35,"util":39}],6:[function(_require,module,exports){
 (function (Buffer){
 /**
  * LZ4 based compression and decompression
@@ -957,10 +957,10 @@ exports.SIZES = {
 , SKIP_SIZE: 4
 }
 
-exports.utils = require('./utils')
+exports.utils = _require('./utils')
 
-}).call(this,require("buffer").Buffer)
-},{"./utils":"./utils","buffer":"buffer"}],7:[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"./utils":"./utils","buffer":"buffer"}],7:[function(_require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -1113,9 +1113,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],8:[function(require,module,exports){
+},{}],8:[function(_require,module,exports){
 
-},{}],9:[function(require,module,exports){
+},{}],9:[function(_require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -1225,11 +1225,11 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-}).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":16}],10:[function(require,module,exports){
-exports.UINT32 = require('./lib/uint32')
-exports.UINT64 = require('./lib/uint64')
-},{"./lib/uint32":11,"./lib/uint64":12}],11:[function(require,module,exports){
+}).call(this,{"isBuffer":_require("../../is-buffer/index.js")})
+},{"../../is-buffer/index.js":16}],10:[function(_require,module,exports){
+exports.UINT32 = _require('./lib/uint32')
+exports.UINT64 = _require('./lib/uint64')
+},{"./lib/uint32":11,"./lib/uint64":12}],11:[function(_require,module,exports){
 /**
   C-like unsigned 32 bits integers in Javascript
   Copyright (C) 2013, Pierre Curto
@@ -1405,7 +1405,7 @@ exports.UINT64 = require('./lib/uint64')
     c16 = c00 >>> 16
 
     c16 += a16 * b00
-    c16 &= 0xFFFF   // Not required but improves performance
+    c16 &= 0xFFFF   // Not _required but improves performance
     c16 += a00 * b16
 
     this._low = c00 & 0xFFFF
@@ -1682,7 +1682,7 @@ exports.UINT64 = require('./lib/uint64')
 
 })(this)
 
-},{}],12:[function(require,module,exports){
+},{}],12:[function(_require,module,exports){
 /**
   C-like unsigned 64 bits integers in Javascript
   Copyright (C) 2013, Pierre Curto
@@ -2332,7 +2332,7 @@ exports.UINT64 = require('./lib/uint64')
 
 })(this)
 
-},{}],13:[function(require,module,exports){
+},{}],13:[function(_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2857,7 +2857,7 @@ function functionBindPolyfill(context) {
   };
 }
 
-},{}],14:[function(require,module,exports){
+},{}],14:[function(_require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -2943,7 +2943,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],15:[function(require,module,exports){
+},{}],15:[function(_require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -2968,7 +2968,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],16:[function(require,module,exports){
+},{}],16:[function(_require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -2991,14 +2991,14 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],17:[function(require,module,exports){
+},{}],17:[function(_require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],18:[function(require,module,exports){
+},{}],18:[function(_require,module,exports){
 (function (process){
 'use strict';
 
@@ -3045,8 +3045,8 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 
-}).call(this,require('_process'))
-},{"_process":19}],19:[function(require,module,exports){
+}).call(this,_require('_process'))
+},{"_process":19}],19:[function(_require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -3232,10 +3232,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],20:[function(require,module,exports){
-module.exports = require('./lib/_stream_duplex.js');
+},{}],20:[function(_require,module,exports){
+module.exports = _require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":21}],21:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":21}],21:[function(_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3266,7 +3266,7 @@ module.exports = require('./lib/_stream_duplex.js');
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = _require('process-nextick-args');
 /*</replacement>*/
 
 /*<replacement>*/
@@ -3281,12 +3281,12 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = _require('core-util-is');
+util.inherits = _require('inherits');
 /*</replacement>*/
 
-var Readable = require('./_stream_readable');
-var Writable = require('./_stream_writable');
+var Readable = _require('./_stream_readable');
+var Writable = _require('./_stream_writable');
 
 util.inherits(Duplex, Readable);
 
@@ -3367,7 +3367,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"./_stream_readable":23,"./_stream_writable":25,"core-util-is":9,"inherits":15,"process-nextick-args":18}],22:[function(require,module,exports){
+},{"./_stream_readable":23,"./_stream_writable":25,"core-util-is":9,"inherits":15,"process-nextick-args":18}],22:[function(_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3397,11 +3397,11 @@ Duplex.prototype._destroy = function (err, cb) {
 
 module.exports = PassThrough;
 
-var Transform = require('./_stream_transform');
+var Transform = _require('./_stream_transform');
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = _require('core-util-is');
+util.inherits = _require('inherits');
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -3415,7 +3415,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":24,"core-util-is":9,"inherits":15}],23:[function(require,module,exports){
+},{"./_stream_transform":24,"core-util-is":9,"inherits":15}],23:[function(_require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -3442,13 +3442,13 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = _require('process-nextick-args');
 /*</replacement>*/
 
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = require('isarray');
+var isArray = _require('isarray');
 /*</replacement>*/
 
 /*<replacement>*/
@@ -3458,7 +3458,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = require('events').EventEmitter;
+var EE = _require('events').EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -3466,12 +3466,12 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = require('./internal/streams/stream');
+var Stream = _require('./internal/streams/stream');
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = require('safe-buffer').Buffer;
+var Buffer = _require('safe-buffer').Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -3483,12 +3483,12 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = _require('core-util-is');
+util.inherits = _require('inherits');
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = require('util');
+var debugUtil = _require('util');
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -3497,8 +3497,8 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = require('./internal/streams/BufferList');
-var destroyImpl = require('./internal/streams/destroy');
+var BufferList = _require('./internal/streams/BufferList');
+var destroyImpl = _require('./internal/streams/destroy');
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -3518,13 +3518,13 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || _require('./_stream_duplex');
 
   options = options || {};
 
   // Duplex streams are both readable and writable, but share
   // the same options object.
-  // However, some cases require setting options to different
+  // However, some cases _require setting options to different
   // values for the readable and the writable sides of the duplex stream.
   // These options can be provided separately as readableXXX and writableXXX.
   var isDuplex = stream instanceof Duplex;
@@ -3588,14 +3588,14 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
+    if (!StringDecoder) StringDecoder = _require('string_decoder/').StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
 }
 
 function Readable(options) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || _require('./_stream_duplex');
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -3744,7 +3744,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
+  if (!StringDecoder) StringDecoder = _require('string_decoder/').StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -4436,8 +4436,8 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":21,"./internal/streams/BufferList":26,"./internal/streams/destroy":27,"./internal/streams/stream":28,"_process":19,"core-util-is":9,"events":13,"inherits":15,"isarray":17,"process-nextick-args":18,"safe-buffer":34,"string_decoder/":29,"util":8}],24:[function(require,module,exports){
+}).call(this,_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":21,"./internal/streams/BufferList":26,"./internal/streams/destroy":27,"./internal/streams/stream":28,"_process":19,"core-util-is":9,"events":13,"inherits":15,"isarray":17,"process-nextick-args":18,"safe-buffer":34,"string_decoder/":29,"util":8}],24:[function(_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4505,11 +4505,11 @@ function indexOf(xs, x) {
 
 module.exports = Transform;
 
-var Duplex = require('./_stream_duplex');
+var Duplex = _require('./_stream_duplex');
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = _require('core-util-is');
+util.inherits = _require('inherits');
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -4652,7 +4652,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":21,"core-util-is":9,"inherits":15}],25:[function(require,module,exports){
+},{"./_stream_duplex":21,"core-util-is":9,"inherits":15}],25:[function(_require,module,exports){
 (function (process,global,setImmediate){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4683,7 +4683,7 @@ function done(stream, er, data) {
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = _require('process-nextick-args');
 /*</replacement>*/
 
 module.exports = Writable;
@@ -4720,23 +4720,23 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = require('core-util-is');
-util.inherits = require('inherits');
+var util = _require('core-util-is');
+util.inherits = _require('inherits');
 /*</replacement>*/
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: require('util-deprecate')
+  deprecate: _require('util-deprecate')
 };
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = require('./internal/streams/stream');
+var Stream = _require('./internal/streams/stream');
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = require('safe-buffer').Buffer;
+var Buffer = _require('safe-buffer').Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -4747,20 +4747,20 @@ function _isUint8Array(obj) {
 
 /*</replacement>*/
 
-var destroyImpl = require('./internal/streams/destroy');
+var destroyImpl = _require('./internal/streams/destroy');
 
 util.inherits(Writable, Stream);
 
 function nop() {}
 
 function WritableState(options, stream) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || _require('./_stream_duplex');
 
   options = options || {};
 
   // Duplex streams are both readable and writable, but share
   // the same options object.
-  // However, some cases require setting options to different
+  // However, some cases _require setting options to different
   // values for the readable and the writable sides of the duplex stream.
   // These options can be provided separately as readableXXX and writableXXX.
   var isDuplex = stream instanceof Duplex;
@@ -4904,7 +4904,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || require('./_stream_duplex');
+  Duplex = Duplex || _require('./_stream_duplex');
 
   // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
@@ -5010,7 +5010,7 @@ Writable.prototype.uncork = function () {
 };
 
 Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
-  // node::ParseEncoding() requires lower case.
+  // node::ParseEncoding() _requires lower case.
   if (typeof encoding === 'string') encoding = encoding.toLowerCase();
   if (!(['hex', 'utf8', 'utf-8', 'ascii', 'binary', 'base64', 'ucs2', 'ucs-2', 'utf16le', 'utf-16le', 'raw'].indexOf((encoding + '').toLowerCase()) > -1)) throw new TypeError('Unknown encoding: ' + encoding);
   this._writableState.defaultEncoding = encoding;
@@ -5341,14 +5341,14 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"./_stream_duplex":21,"./internal/streams/destroy":27,"./internal/streams/stream":28,"_process":19,"core-util-is":9,"inherits":15,"process-nextick-args":18,"safe-buffer":34,"timers":36,"util-deprecate":37}],26:[function(require,module,exports){
+}).call(this,_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},_require("timers").setImmediate)
+},{"./_stream_duplex":21,"./internal/streams/destroy":27,"./internal/streams/stream":28,"_process":19,"core-util-is":9,"inherits":15,"process-nextick-args":18,"safe-buffer":34,"timers":36,"util-deprecate":37}],26:[function(_require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = require('safe-buffer').Buffer;
-var util = require('util');
+var Buffer = _require('safe-buffer').Buffer;
+var util = _require('util');
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -5422,12 +5422,12 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":34,"util":8}],27:[function(require,module,exports){
+},{"safe-buffer":34,"util":8}],27:[function(_require,module,exports){
 'use strict';
 
 /*<replacement>*/
 
-var pna = require('process-nextick-args');
+var pna = _require('process-nextick-args');
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -5497,10 +5497,10 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":18}],28:[function(require,module,exports){
-module.exports = require('events').EventEmitter;
+},{"process-nextick-args":18}],28:[function(_require,module,exports){
+module.exports = _require('events').EventEmitter;
 
-},{"events":13}],29:[function(require,module,exports){
+},{"events":13}],29:[function(_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5526,7 +5526,7 @@ module.exports = require('events').EventEmitter;
 
 /*<replacement>*/
 
-var Buffer = require('safe-buffer').Buffer;
+var Buffer = _require('safe-buffer').Buffer;
 /*</replacement>*/
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
@@ -5714,7 +5714,7 @@ function utf8FillLast(buf) {
 }
 
 // Returns all complete UTF-8 characters in a Buffer. If the Buffer ended on a
-// partial character, the character's bytes are buffered until the required
+// partial character, the character's bytes are buffered until the _required
 // number of bytes are available.
 function utf8Text(buf, i) {
   var total = utf8CheckIncomplete(this, buf, i);
@@ -5797,27 +5797,27 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":34}],30:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
+},{"safe-buffer":34}],30:[function(_require,module,exports){
+module.exports = _require('./readable').PassThrough
 
-},{"./readable":31}],31:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
+},{"./readable":31}],31:[function(_require,module,exports){
+exports = module.exports = _require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
+exports.Writable = _require('./lib/_stream_writable.js');
+exports.Duplex = _require('./lib/_stream_duplex.js');
+exports.Transform = _require('./lib/_stream_transform.js');
+exports.PassThrough = _require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":21,"./lib/_stream_passthrough.js":22,"./lib/_stream_readable.js":23,"./lib/_stream_transform.js":24,"./lib/_stream_writable.js":25}],32:[function(require,module,exports){
-module.exports = require('./readable').Transform
+},{"./lib/_stream_duplex.js":21,"./lib/_stream_passthrough.js":22,"./lib/_stream_readable.js":23,"./lib/_stream_transform.js":24,"./lib/_stream_writable.js":25}],32:[function(_require,module,exports){
+module.exports = _require('./readable').Transform
 
-},{"./readable":31}],33:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
+},{"./readable":31}],33:[function(_require,module,exports){
+module.exports = _require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":25}],34:[function(require,module,exports){
+},{"./lib/_stream_writable.js":25}],34:[function(_require,module,exports){
 /* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
+var buffer = _require('buffer')
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -5829,7 +5829,7 @@ function copyProps (src, dst) {
 if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
   module.exports = buffer
 } else {
-  // Copy properties from require('buffer')
+  // Copy properties from _require('buffer')
   copyProps(buffer, exports)
   exports.Buffer = SafeBuffer
 }
@@ -5879,7 +5879,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":"buffer"}],35:[function(require,module,exports){
+},{"buffer":"buffer"}],35:[function(_require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5903,15 +5903,15 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 module.exports = Stream;
 
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
+var EE = _require('events').EventEmitter;
+var inherits = _require('inherits');
 
 inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
+Stream.Readable = _require('readable-stream/readable.js');
+Stream.Writable = _require('readable-stream/writable.js');
+Stream.Duplex = _require('readable-stream/duplex.js');
+Stream.Transform = _require('readable-stream/transform.js');
+Stream.PassThrough = _require('readable-stream/passthrough.js');
 
 // Backwards-compat with node 0.4.x
 Stream.Stream = Stream;
@@ -6008,9 +6008,9 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":13,"inherits":15,"readable-stream/duplex.js":20,"readable-stream/passthrough.js":30,"readable-stream/readable.js":31,"readable-stream/transform.js":32,"readable-stream/writable.js":33}],36:[function(require,module,exports){
+},{"events":13,"inherits":15,"readable-stream/duplex.js":20,"readable-stream/passthrough.js":30,"readable-stream/readable.js":31,"readable-stream/transform.js":32,"readable-stream/writable.js":33}],36:[function(_require,module,exports){
 (function (setImmediate,clearImmediate){
-var nextTick = require('process/browser.js').nextTick;
+var nextTick = _require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
 var slice = Array.prototype.slice;
 var immediateIds = {};
@@ -6086,8 +6086,8 @@ exports.setImmediate = typeof setImmediate === "function" ? setImmediate : funct
 exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
   delete immediateIds[id];
 };
-}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":19,"timers":36}],37:[function(require,module,exports){
+}).call(this,_require("timers").setImmediate,_require("timers").clearImmediate)
+},{"process/browser.js":19,"timers":36}],37:[function(_require,module,exports){
 (function (global){
 
 /**
@@ -6158,14 +6158,14 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],38:[function(require,module,exports){
+},{}],38:[function(_require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],39:[function(require,module,exports){
+},{}],39:[function(_require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6692,7 +6692,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = require('./support/isBuffer');
+exports.isBuffer = _require('./support/isBuffer');
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -6736,7 +6736,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = require('inherits');
+exports.inherits = _require('inherits');
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -6754,8 +6754,8 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":38,"_process":19,"inherits":15}],40:[function(require,module,exports){
+}).call(this,_require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./support/isBuffer":38,"_process":19,"inherits":15}],40:[function(_require,module,exports){
 (function (Buffer){
 /**
 xxHash implementation in pure Javascript
@@ -6763,7 +6763,7 @@ xxHash implementation in pure Javascript
 Copyright (C) 2013, Pierre Curto
 MIT license
 */
-var UINT32 = require('cuint').UINT32
+var UINT32 = _require('cuint').UINT32
 
 /*
   Merged this sequence of method calls as it speeds up
@@ -6779,7 +6779,7 @@ UINT32.prototype.xxh_update = function (low, high) {
   c16 = c00 >>> 16
 
   c16 += high * b00
-  c16 &= 0xFFFF   // Not required but improves performance
+  c16 &= 0xFFFF   // Not _required but improves performance
   c16 += low * b16
 
   var a00 = this._low + (c00 & 0xFFFF)
@@ -6800,7 +6800,7 @@ UINT32.prototype.xxh_update = function (low, high) {
   c16 = c00 >>> 16
 
   c16 += a16 * b00
-  c16 &= 0xFFFF   // Not required but improves performance
+  c16 &= 0xFFFF   // Not _required but improves performance
   c16 += a00 * b16
 
   this._low = c00 & 0xFFFF
@@ -7147,8 +7147,8 @@ XXH.prototype.digest = function () {
 
 module.exports = XXH
 
-}).call(this,require("buffer").Buffer)
-},{"buffer":"buffer","cuint":10}],41:[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"buffer":"buffer","cuint":10}],41:[function(_require,module,exports){
 (function (Buffer){
 /**
 xxHash64 implementation in pure Javascript
@@ -7156,7 +7156,7 @@ xxHash64 implementation in pure Javascript
 Copyright (C) 2016, Pierre Curto
 MIT license
 */
-var UINT64 = require('cuint').UINT64
+var UINT64 = _require('cuint').UINT64
 
 /*
  * Constants
@@ -7595,8 +7595,8 @@ XXH64.prototype.digest = function () {
 
 module.exports = XXH64
 
-}).call(this,require("buffer").Buffer)
-},{"buffer":"buffer","cuint":10}],"buffer":[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"buffer":"buffer","cuint":10}],"buffer":[function(_require,module,exports){
 (function (Buffer){
 /*!
  * The buffer module from node.js, for the browser.
@@ -7608,8 +7608,8 @@ module.exports = XXH64
 
 'use strict'
 
-var base64 = require('base64-js')
-var ieee754 = require('ieee754')
+var base64 = _require('base64-js')
+var ieee754 = _require('ieee754')
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -7637,8 +7637,8 @@ Buffer.TYPED_ARRAY_SUPPORT = typedArraySupport()
 if (!Buffer.TYPED_ARRAY_SUPPORT && typeof console !== 'undefined' &&
     typeof console.error === 'function') {
   console.error(
-    'This browser lacks typed array (Uint8Array) support which is required by ' +
-    '`buffer` v5.x. Use `buffer` v4.x if you require old browser support.'
+    'This browser lacks typed array (Uint8Array) support which is _required by ' +
+    '`buffer` v5.x. Use `buffer` v4.x if you _require old browser support.'
   )
 }
 
@@ -9376,22 +9376,22 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-}).call(this,require("buffer").Buffer)
-},{"base64-js":7,"buffer":"buffer","ieee754":14}],"lz4":[function(require,module,exports){
+}).call(this,_require("buffer").Buffer)
+},{"base64-js":7,"buffer":"buffer","ieee754":14}],"lz4":[function(_require,module,exports){
 /**
  * LZ4 based compression and decompression
  * Copyright (c) 2014 Pierre Curto
  * MIT Licensed
  */
 
-module.exports = require('./static')
+module.exports = _require('./static')
 
 module.exports.version = "0.5.1"
-module.exports.createDecoderStream = require('./decoder_stream')
-module.exports.decode = require('./decoder').LZ4_uncompress
+module.exports.createDecoderStream = _require('./decoder_stream')
+module.exports.decode = _require('./decoder').LZ4_uncompress
 
-module.exports.createEncoderStream = require('./encoder_stream')
-module.exports.encode = require('./encoder').LZ4_compress
+module.exports.createEncoderStream = _require('./encoder_stream')
+module.exports.encode = _require('./encoder').LZ4_compress
 
 // Expose block decoder and encoders
 var bindings = module.exports.utils.bindings
@@ -9402,10 +9402,10 @@ module.exports.encodeBound = bindings.compressBound
 module.exports.encodeBlock = bindings.compress
 module.exports.encodeBlockHC = bindings.compressHC
 
-},{"./decoder":2,"./decoder_stream":3,"./encoder":4,"./encoder_stream":5,"./static":6}],"xxhashjs":[function(require,module,exports){
+},{"./decoder":2,"./decoder_stream":3,"./encoder":4,"./encoder_stream":5,"./static":6}],"xxhashjs":[function(_require,module,exports){
 module.exports = {
-  h32: require("./xxhash")
-, h64: require("./xxhash64")
+  h32: _require("./xxhash")
+, h64: _require("./xxhash64")
 }
 
 },{"./xxhash":40,"./xxhash64":41}]},{},["lz4"]);
