@@ -8,7 +8,8 @@
   "unpkg": "dist/bintocol.umd.js",
   "scripts": {
     "build": "microbundle",
-    "dev": "microbundle watch"
+    "dev": "microbundle watch",
+    "prepublish": "microbundle"
   },
   "repository": {
     "type": "git",
