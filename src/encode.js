@@ -6,7 +6,7 @@ const lz4 = require('lz4');
 
 const { getSchema, types } = registry;
 const { MASK_1, MASK_6 } = MASKS;
-const { OBJECT, BOOL, INT, UINT, STRING, ARRAY } = types;
+const { OBJECT, BOOL, INT, UINT, STRING, ARRAY, NOTHING } = types;
 
 export default encode = (payload, options = { compress: 'auto', json: true }) => {
   const { event, data } = payload;
@@ -63,6 +63,8 @@ const encodeType = (data, schema, state) => {
       return encodeObject(data, schema.schema, state);
     case ARRAY:
       return encodeArray(data, schema.lengthSize, schema.content, state);
+    case NOTHING:
+      return state;
     default:
       throw `Unknown type: ${schema.type}`
   }

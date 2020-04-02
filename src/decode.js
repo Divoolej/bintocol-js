@@ -6,7 +6,7 @@ const lz4 = require('lz4');
 
 const { getSchema, types } = registry;
 const { MASK_1, MASK_6 } = MASKS;
-const { OBJECT, BOOL, INT, UINT, STRING, ARRAY } = types;
+const { OBJECT, BOOL, INT, UINT, STRING, ARRAY, NOTHING } = types;
 
 export default decode = (message) => {
   const { event, options } = decodeHeader(message[0]);
@@ -36,22 +36,18 @@ const decodeType = (schema, state) => {
   switch (schema.type) {
     case BOOL:
       return decodeBool(state);
-      break;
     case INT:
       return decodeSignedInt(schema.size, state);
-      break;
     case UINT:
       return decodeUnsignedInt(schema.size, state);
-      break;
     case STRING:
       return decodeString(schema.lengthSize, state);
-      break;
     case OBJECT:
       return decodeObject(schema.schema, state);
-      break;
     case ARRAY:
       return decodeArray(schema.lengthSize, schema.content, state);
-      break;
+    case NOTHING:
+      return state;
     default:
       throw `Unknown type: ${schema.type}`
   }
