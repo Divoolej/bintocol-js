@@ -9,8 +9,9 @@ const { MASK_1, MASK_6 } = MASKS;
 const { OBJECT, BOOL, INT, UINT, STRING, ARRAY, NOTHING } = types;
 
 export default decode = (message) => {
-  const { event, options } = decodeHeader(message[0]);
-  return { event, data: decodeData({ event, data: message.slice(1) }, options) };
+  const buffer = Buffer.from(message);
+  const { event, options } = decodeHeader(buffer[0]);
+  return { event, data: decodeData({ event, data: buffer.slice(1) }, options) };
 };
 
 const decodeHeader = headerByte => ({
