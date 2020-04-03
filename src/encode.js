@@ -1,8 +1,8 @@
 import registry from './registry';
 import { MASKS } from './constants';
 
-const { Buffer } = require('buffer');
-const lz4 = require('lz4');
+const { Buffer } = _require('buffer');
+const lz4 = _require('lz4');
 
 const { getSchema, types } = registry;
 const { MASK_1, MASK_6 } = MASKS;
